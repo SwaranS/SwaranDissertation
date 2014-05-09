@@ -51,5 +51,13 @@ public class HomeController {
 		return jsonGraph;
 	}
 	
-	
+	//Get parameter & reply json
+			@RequestMapping(value = "/postgraph", method = RequestMethod.POST)
+			public @ResponseBody Graph postGraph(Graph inGraph) {
+				logger.info("Welcome home! The client locale is {}.");
+				Graph jsonGraph = new Graph();
+				jsonGraph.setFirstValue(inGraph.getFirstValue());
+				jsonGraph.setSecondValue("Second");
+				return jsonGraph;
+			}
 }

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.codevisual.model.Graph;
 
 /**
  * Handles requests for the application home page.
@@ -35,5 +39,17 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	
+	//Get parameter & reply json
+	@RequestMapping(value = "/graph", method = RequestMethod.GET)
+	public @ResponseBody Graph graph( @RequestParam(value="name", required=false)String name) {
+		logger.info("Welcome home! The client locale is {}.");
+		Graph jsonGraph = new Graph();
+		jsonGraph.setFirstValue(name);
+		jsonGraph.setSecondValue("Second");
+		return jsonGraph;
+	}
+	
 	
 }

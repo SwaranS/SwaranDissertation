@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,13 +53,13 @@ public class HomeController {
 		return jsonGraph;
 	}
 	
-	//Get parameter & reply json
+	//Get parameter & reply json @PathVariable("id") String id, @RequestBody Graph inGraph)
 			@RequestMapping(value = "/postgraph", method = RequestMethod.POST)
-			public @ResponseBody Graph postGraph(Graph inGraph) {
+			public @ResponseBody Graph postGraph(@RequestBody Graph inGraph) {
 				logger.info("Welcome home! The client locale is {}.");
 				Graph jsonGraph = new Graph();
 				jsonGraph.setFirstValue(inGraph.getFirstValue());
-				jsonGraph.setSecondValue("Second");
+				jsonGraph.setSecondValue(inGraph.getSecondValue());
 				return jsonGraph;
 			}
 }

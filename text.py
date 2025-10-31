@@ -32,3 +32,24 @@ def solution(letters):
 				count += 1
 
 	return count
+
+
+if __name__ == "__main__":
+	tests = [
+		("aaA", 1),        # a: lowercase before uppercase
+		("aAa", 0),        # a has lowercase after uppercase -> invalid
+		("abBA", 2),       # a and b both satisfy
+		("Zz", 0),         # uppercase before lowercase -> invalid
+		("bbB", 1),        # b valid
+		("", 0),           # empty -> 0
+		("abcABC", 3),     # all three satisfy
+		("aabcccCCCaaaCCC", 1),  # c: lower then upper then lower -> invalid; a: only lower -> invalid; C complicated -> check
+	]
+
+	for s, expected in tests:
+		res = solution(s)
+		print(f"solution('{s}') -> {res} (expected {expected})")
+		assert res == expected, f"Test failed for {s}: got {res}, want {expected}"
+
+	print("All letters tests passed.")
+
